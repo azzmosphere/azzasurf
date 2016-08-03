@@ -1,0 +1,16 @@
+/build
+/gradle
+/gradlew
+/gradlew.bat
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+*.iws
+*.ipr
+out
+gen
+# Created by .ignore support plugin (hsz.mobi)
+/.gradle

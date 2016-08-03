@@ -1,0 +1,32 @@
+group 'au.org.azzasurf'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'org.azzasurf.bootloader.AzzSurfBootloader'
+
+jar {
+    baseName = 'azzasurf'
+    version =  '0.0.1-SNAPSHOT'
+}
+
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
+    compile 'org.thymeleaf:thymeleaf-spring3:3.0.1.RELEASE'
+
+    testCompile('org.thymeleaf:thymeleaf-testing:3.0.1.RELEASE')
+    testCompile("junit:junit")
+}
+

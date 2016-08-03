@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 5.2.0" />
+  <title>Surf Video's</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="http://code.jquery.com/jquery-3.0.0.min.js" integrity=
+  "sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous">
+  </script>
+
+  <script src="js/surf.js"></script>
+
+</head>
+<body>
+  <div id="outer" class="container">
+    <h2>Aaron's Surf Video Collection</h2>
+    <div id="vidselcontainer" class="container">
+      <form id="surffrm" name="surffrm">
+        <select name="vidselector" id="vidselector" class="js-example-basic-single selectBox">
+	   <option></option>
+        </select>
+      </form>
+    </div>
+    <div id="videocontainer" class="container">
+      <iframe id="video" frameborder="0" allowfullscreen="allowfullscreen" width="640" height="360"></iframe>
+    </div>
+  </div>
+</body>
+</html>
