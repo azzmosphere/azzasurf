@@ -1,0 +1,30 @@
+{
+	"videos": [{
+		"vidname": "Ashley Pacey's Twin Fish Adventure",
+		"srcLocation": "https://player.vimeo.com/video/166118202"
+	}, {
+		"vidname": "Whatever Beach : Conner Coffin",
+		"srcLocation": "https://player.vimeo.com/video/171577636"
+	}, {
+		"vidname": "Kelly Slater vs Mick Fanning at Bells Beach",
+		"srcLocation": "https://www.youtube.com/embed/9UQna1fQ5v4"
+	}, {
+		"vidname": "Worlds Biggest Wave",
+		"srcLocation": "https://www.youtube.com/embed/5XpU5M0ZCKM"
+	}, {
+		"vidname": "Fast Take Off",
+		"srcLocation": "https://www.youtube.com/embed/OLfBlSzyrAk"
+	}, {
+		"vidname": "Pop up on short board",
+		"srcLocation": "https://www.youtube.com/embed/ka-eHdV3M7o"
+	}, {
+		"vidname": "Kelly Slater (wave of the winter) Pipeline",
+		"srcLocation": "https://www.youtube.com/embed/UCgd9Ji6aXo"
+	}, {
+		"vidname": "Ari Browne Is Footloose & Fancy Free",
+		"srcLocation": "https://player.vimeo.com/video/173429693"
+	}, {
+		"vidname": "Mitch Crews and Eric Geiselman Burn Through Portugal",
+		"srcLocation": "https://www.youtube.com/embed/DUh6gLk76-8"
+	}]
+}
