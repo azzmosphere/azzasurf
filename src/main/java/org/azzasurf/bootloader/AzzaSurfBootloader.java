@@ -1,17 +1,29 @@
 package org.azzasurf.bootloader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.thymeleaf.spring3.templateresolver.SpringResourceTemplateResolver;
+import javax.inject.Inject;
 
 import java.util.Arrays;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+
 
 /**
  * Creates the bootloader for the project.
@@ -25,69 +37,76 @@ import org.thymeleaf.spring3.view.ThymeleafViewResolver;
  */
 
 @ComponentScan("org.azzasurf")
+@Configuration
+//@PropertySource("/main/webapp/resources/application.properties")
 @SpringBootApplication
 public class AzzaSurfBootloader {
-    private static final String URL = "http://localhost:8080/";
     private static final String OS  = System.getProperty("os.name").toLowerCase();
 
+    @Value("${bootloader.url}")
+    private String URL;
+    private static final boolean LAUNCH_BROWSER = false;
+    private static final Logger logger = LoggerFactory.getLogger(AzzaSurfBootloader.class);
 
-    /**
-     *  The template resolver for JSP.
-     *
-     * @return
-     */
-//    @Bean
-//    public TemplateResolver templateResolver() {
-//
-//    }
+    @Value("${templateresolver.prefix}")
+    private String tmplResolverPrefix;
 
-    /**
-     * Create the view resolver.
-     *
-     * @return ThymeleafViewResolver
-     */
-//    @Bean
-//    public ViewResolver getViewResolver() {
-//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//
-//        return viewResolver;
-//    }
-//
-//    /**
-//     *
-//     * CREATE
-//     *
-//     * @return
-//     */
-//    @Bean
-//    public InternalResourceViewResolver jspViewResolver() {
-//        InternalResourceViewResolver resolver  = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/JSP/");
-//        resolver.setSuffix(".jsp");
-//        resolver.setViewClass(JstlView.class);
-//        return resolver;
-//
-//    }
+    @Bean
+    public ITemplateResolver getTemplateResolver() {
+        SpringResourceTemplateResolver templateResolver =  new SpringResourceTemplateResolver();
+
+        templateResolver.setPrefix(tmplResolverPrefix);
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+
+        return templateResolver;
+    }
+
+    @Autowired
+    @Bean
+    public SpringTemplateEngine getSpringTemplateEngine(ITemplateResolver templateResolver) {
+        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+        springTemplateEngine.setTemplateResolver(templateResolver);
+        return springTemplateEngine;
+    }
+
+
+    @Autowired
+    @Bean
+    public ViewResolver getViewResolver(SpringTemplateEngine templateEngine) {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine);
+
+        return viewResolver;
+    }
 
     public static void main(String[] args) throws Exception {
 
+
+
         ApplicationContext ctx = SpringApplication.run(AzzaSurfBootloader.class, args);
-        System.out.println("Let's inspect the beans provided by Spring Boot:");
+        logger.info("Let's inspect the beans provided by Spring Boot:");
 
         String[] beanNames = ctx.getBeanDefinitionNames();
         Arrays.sort(beanNames);
         for (String beanName : beanNames) {
-            System.out.println(beanName);
+            logger.info(beanName);
         }
 
-        Runtime rt = Runtime.getRuntime();
-
-        if (OS.contains("mac")) {
-
-            rt.exec( "open " + URL);
+        logger.info("RESOURCES:");
+        Resource[] resources = ctx.getResources("**");
+        for (Resource resource : resources) {
+            logger.info(resource.getFilename());
         }
-        else {
-            throw new Exception("Unsupported operating system");
-        }
+
+        logger.info("ENVIRONMENT");
+        //logger.info("spring.view.prefix = ", env.getProperty("spring.view.prefix"));
+//
+//        Runtime rt = Runtime.getRuntime();
+//
+//        if (OS.contains("mac") && LAUNCH_BROWSER == true) {
+//
+//            rt.exec( "open " + URL);
+//        }
     }
 }

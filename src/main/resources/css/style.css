@@ -1,0 +1,40 @@
+/* Import the select2 code. */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css");
+
+h2{
+   text-align: center;
+   font-family: Impact, Charcoal, sans-serif;}
+
+h3{
+  color: black;
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+iframe {
+  height: 380;
+  width: 640;
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.columnLayout {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+
+.inner {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+}
+
+.selectBox {
+  width : 200px;
+}
+

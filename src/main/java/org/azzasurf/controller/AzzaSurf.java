@@ -1,10 +1,14 @@
 package org.azzasurf.controller;
 
+import org.azzasurf.model.Account;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,26 +21,30 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AzzaSurf {
 
+    private static final Logger logger = LoggerFactory.getLogger(AzzaSurf.class);
+    private Account account = new Account();
+
+
     @RequestMapping("/")
     @ResponseBody
     String home() {
         return "Hello World!";
     }
 
-    @RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
-    public ModelAndView hello(@PathVariable("name") String name) {
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("HelloWorldPage");
-        model.addObject("msg", name);
-
-        return model;
+    @ModelAttribute(value="account")
+    private Account prepareData() {
+        return account;
     }
 
-    @RequestMapping(value = "/vids/", method = RequestMethod.GET)
-    public ModelAndView getVids() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("surfvids");
-        return model;
+    @RequestMapping(value="/hello/{name}",method=RequestMethod.GET)
+    public String view(@PathVariable("name") String name, ModelAndView model) {
+
+        logger.info("name = " + name);
+
+        if (name != null) {
+            account.setName(name);
+        }
+
+        return "HelloWorldPage";
     }
 }
