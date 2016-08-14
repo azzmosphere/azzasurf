@@ -6,7 +6,7 @@
 
   <meta name="generator" content="HTML Tidy for HTML5 for Mac OS X version 5.2.0" />
   <title>Surf Video's</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
   <script src="http://code.jquery.com/jquery-3.0.0.min.js" integrity=
   "sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous">
   </script>
@@ -21,6 +21,10 @@
       <form id="surffrm" name="surffrm">
         <select name="vidselector" id="vidselector" class="js-example-basic-single selectBox">
 	   <option></option>
+
+          <option th:each="video : ${videos}"
+             th:value="${video.srcLocation}" th:text="${video.vidname}">A Smoke Test</option>
+
         </select>
       </form>
     </div>

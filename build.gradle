@@ -25,7 +25,10 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
     compile 'org.thymeleaf:thymeleaf-spring3:3.0.1.RELEASE'
-    compile 'javax.inject:javax.inject:1'
+    //compile 'javax.inject:javax.inject:1'
+
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
 
     testCompile('org.thymeleaf:thymeleaf-testing:3.0.1.RELEASE')
     testCompile("junit:junit")

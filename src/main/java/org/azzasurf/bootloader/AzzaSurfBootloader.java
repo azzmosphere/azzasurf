@@ -15,7 +15,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.thymeleaf.spring3.templateresolver.SpringResourceTemplateResolver;
-import javax.inject.Inject;
 
 import java.util.Arrays;
 
@@ -38,7 +37,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @ComponentScan("org.azzasurf")
 @Configuration
-//@PropertySource("/main/webapp/resources/application.properties")
 @SpringBootApplication
 public class AzzaSurfBootloader {
     private static final String OS  = System.getProperty("os.name").toLowerCase();
@@ -82,8 +80,6 @@ public class AzzaSurfBootloader {
 
     public static void main(String[] args) throws Exception {
 
-
-
         ApplicationContext ctx = SpringApplication.run(AzzaSurfBootloader.class, args);
         logger.info("Let's inspect the beans provided by Spring Boot:");
 
@@ -96,10 +92,14 @@ public class AzzaSurfBootloader {
         logger.info("RESOURCES:");
         Resource[] resources = ctx.getResources("**");
         for (Resource resource : resources) {
-            logger.info(resource.getFilename());
+            logger.info(resource.getURL() + ":" + resource.getFilename());
         }
 
         logger.info("ENVIRONMENT");
+
+//        Resource resource = ctx.getResource("url:http://localhost:8080/json/videos.json");
+//        logger.info("videos.json = " + resource.getURI());
+
         //logger.info("spring.view.prefix = ", env.getProperty("spring.view.prefix"));
 //
 //        Runtime rt = Runtime.getRuntime();
