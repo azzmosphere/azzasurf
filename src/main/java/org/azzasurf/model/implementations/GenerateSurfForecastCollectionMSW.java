@@ -56,11 +56,6 @@ public class GenerateSurfForecastCollectionMSW extends JSONAbstractBase<SurfFore
     }
 
     @Override
-    public SurfForecast build(Map<String, Object> map) throws Exception {
-        return null;
-    }
-
-    @Override
     public String getUrlRequest() {
         return msw_url + msw_key + msw_spotrequest + JAN_JUC;
     }
@@ -83,5 +78,10 @@ public class GenerateSurfForecastCollectionMSW extends JSONAbstractBase<SurfFore
     @Override
     public boolean delete(SurfForecast element) {
         return false;
+    }
+
+    @Override
+    public Class getClassT() {
+        return SurfForecast[].class;
     }
 }

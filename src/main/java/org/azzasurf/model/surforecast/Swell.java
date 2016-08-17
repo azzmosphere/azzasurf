@@ -10,7 +10,7 @@ public class Swell {
     private double absMinBreakingHeight;
     private double maxBreakingHeight;
     private double absMaxBreakingHeight;
-    private char unit;
+    private String unit;
     private Components components;
 
     public double getMinBreakingHeight() {
@@ -45,11 +45,11 @@ public class Swell {
         this.absMaxBreakingHeight = absMaxBreakingHeight;
     }
 
-    public char getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(char unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 

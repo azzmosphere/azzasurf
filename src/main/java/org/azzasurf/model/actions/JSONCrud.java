@@ -1,12 +1,14 @@
 package org.azzasurf.model.actions;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by aaron.spiteri on 17/08/2016.
  */
 public interface JSONCrud<T> extends Crud<T> {
-    T build(Map<String, Object> map) throws Exception;
+    List<T> build(String json) throws Exception;
 
     String getUrlRequest();
+
+    Class getClassT();
 }

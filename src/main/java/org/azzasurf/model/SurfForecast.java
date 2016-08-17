@@ -19,7 +19,7 @@ public class SurfForecast {
     private int solidRating;      /* Some sort of number */
     private Swell swell;
     private Wind wind;
-    private Conditions conditions;
+    private Conditions condition;
     private Charts charts;
 
     public Date getTimestamp() {
@@ -78,12 +78,12 @@ public class SurfForecast {
         this.wind = wind;
     }
 
-    public Conditions getConditions() {
-        return conditions;
+    public Conditions getCondition(){
+        return condition;
     }
 
-    public void setConditions(Conditions conditions) {
-        this.conditions = conditions;
+    public void setCondition(Conditions condition) {
+        this.condition = condition;
     }
 
     public Charts getCharts() {

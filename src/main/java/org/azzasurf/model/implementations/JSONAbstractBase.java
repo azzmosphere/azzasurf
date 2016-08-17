@@ -1,29 +1,32 @@
 package org.azzasurf.model.implementations;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonParser;
+
 import org.apache.commons.io.IOUtils;
-import org.azzasurf.model.actions.JSONCrud;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.json.JsonParser;
-import org.springframework.boot.json.JsonParserFactory;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.List;
-import java.lang.Object;
+
+import org.azzasurf.model.actions.JSONCrud;
 
 /**
  * Created by aaron.spiteri on 17/08/2016.
  */
 public abstract class JSONAbstractBase<T> implements JSONCrud<T> {
     private static final Logger logger = LoggerFactory.getLogger(JSONAbstractBase.class);
-    private JsonParser jsonParser =  JsonParserFactory.getJsonParser();
+    private JsonFactory jsonFactory = new JsonFactory();
+    private ObjectMapper objectMapper =  new ObjectMapper(jsonFactory);
 
     @Override
     public List<T> retrieve_all() {
-        //String url_req = ; //msw_url + msw_key + msw_spotrequest + JAN_JUC;
         String url_req = getUrlRequest();
         List<T> objList = new ArrayList<>();
 
@@ -33,13 +36,7 @@ public abstract class JSONAbstractBase<T> implements JSONCrud<T> {
 
             InputStream is = url.openStream();
             String content = new String(IOUtils.toByteArray(is), "US-ASCII");
-
-            List<Object> attributes =  jsonParser.parseList(content);
-
-            for (Object attribute :  attributes) {
-                Map<String, Object> map = (Map<String, Object>) attribute;
-                objList.add(build(map));
-            }
+            objList = build(content);
         }
         catch (Exception e) {
             if (logger.isDebugEnabled()) {
@@ -51,4 +48,29 @@ public abstract class JSONAbstractBase<T> implements JSONCrud<T> {
         return objList;
     }
 
+    /**
+     * Builds the objects using a JSON assuming that the string is a JSON array.
+     * if this is not the case then override this method to meet your requirements.
+     *
+     * @param json
+     * @return deserialised objects from JSON string.
+     * @throws Exception
+     */
+    @Override
+    public List<T> build(String json) throws Exception {
+
+        List<T> objList = new ArrayList<>();
+        JsonParser jsonParser = jsonFactory.createParser(json);
+        MappingIterator<T> it = objectMapper.readValues(jsonParser, getClassT());
+
+        if (it.hasNext()) {
+            T[] attributes = (T[]) it.next();
+
+            for (T attribute : attributes) {
+                objList.add(attribute);
+            }
+        }
+
+        return objList;
+    }
 }

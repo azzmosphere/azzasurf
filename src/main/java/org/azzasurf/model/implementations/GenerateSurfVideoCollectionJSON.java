@@ -1,5 +1,6 @@
 package org.azzasurf.model.implementations;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.azzasurf.model.Video;
 import org.azzasurf.model.actions.GenerateSurfVideoCollection;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ public class GenerateSurfVideoCollectionJSON extends JSONAbstractBase<Video> imp
     private JsonParser jsonParser =  JsonParserFactory.getJsonParser();
     private final String ROOT_NODE = "videos";
     private ResourceLoader resourceLoader;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Value("${json.videos}")
     private String SURF_VID_FILE;
@@ -37,15 +39,6 @@ public class GenerateSurfVideoCollectionJSON extends JSONAbstractBase<Video> imp
     @Override
     public String getUrlRequest() {
         return SURF_VID_FILE;
-    }
-
-    @Override
-    public Video  build(Map<String, Object> map) throws Exception {
-        Video video = new Video();
-        video.setSrcLocation(new URI((String)map.get("srcLocation")));
-        video.setVidname((String) map.get("vidname"));
-
-        return video;
     }
 
     @Override
@@ -66,5 +59,10 @@ public class GenerateSurfVideoCollectionJSON extends JSONAbstractBase<Video> imp
     @Override
     public boolean delete(Video element) {
         return false;
+    }
+
+    @Override
+    public Class getClassT() {
+        return Video[].class;
     }
 }
