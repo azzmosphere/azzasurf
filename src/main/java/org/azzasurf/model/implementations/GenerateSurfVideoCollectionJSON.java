@@ -1,7 +1,7 @@
-package org.azzasurf.controller.implementations;
+package org.azzasurf.model.implementations;
 
-import org.azzasurf.controller.actions.GenerateSurfVideoCollection;
 import org.azzasurf.model.Video;
+import org.azzasurf.model.actions.GenerateSurfVideoCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +10,7 @@ import org.springframework.boot.json.JsonParser;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.context.ResourceLoaderAware;
@@ -39,7 +40,7 @@ public class GenerateSurfVideoCollectionJSON implements GenerateSurfVideoCollect
     }
 
     @Override
-    public Video[] getVideos() {
+    public Video[] retrieve_all() {
         logger.debug("getting files from " + SURF_VID_FILE);
         Video[] videos;
 
@@ -78,5 +79,25 @@ public class GenerateSurfVideoCollectionJSON implements GenerateSurfVideoCollect
         }
 
         return videos;
+    }
+
+    @Override
+    public Video create(Video element) {
+        return null;
+    }
+
+    @Override
+    public Video[] retrieve(HashMap<String, Object> params) {
+        return new Video[0];
+    }
+
+    @Override
+    public Video update(Video element) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(Video element) {
+        return false;
     }
 }

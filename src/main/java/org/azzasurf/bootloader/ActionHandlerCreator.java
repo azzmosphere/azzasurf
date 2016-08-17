@@ -1,7 +1,9 @@
 package org.azzasurf.bootloader;
 
-import org.azzasurf.controller.actions.GenerateSurfVideoCollection;
-import org.azzasurf.controller.implementations.GenerateSurfVideoCollectionJSON;
+import org.azzasurf.model.actions.GenerateSurfForecastCollection;
+import org.azzasurf.model.actions.GenerateSurfVideoCollection;
+import org.azzasurf.model.implementations.GenerateSurfForecastCollectionMSW;
+import org.azzasurf.model.implementations.GenerateSurfVideoCollectionJSON;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +19,11 @@ public class ActionHandlerCreator {
     @Bean
     public GenerateSurfVideoCollection getSurfVideoCollection() {
         return new GenerateSurfVideoCollectionJSON();
+    }
+
+    @Bean
+    public GenerateSurfForecastCollection getSurfForecast() {
+        return new GenerateSurfForecastCollectionMSW();
     }
 
 }

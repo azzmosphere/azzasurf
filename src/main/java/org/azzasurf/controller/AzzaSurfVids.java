@@ -1,6 +1,6 @@
 package org.azzasurf.controller;
 
-import org.azzasurf.controller.actions.GenerateSurfVideoCollection;
+import org.azzasurf.model.actions.GenerateSurfVideoCollection;
 import org.azzasurf.views.SurfVideoViewMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public class AzzaSurfVids {
 
     @ModelAttribute(value="videos")
     private Video[] prepareData() {
-        return videoCollection.getVideos();
+        return videoCollection.retrieve_all();
     }
 
     @RequestMapping(value="/videos",method= RequestMethod.GET)
