@@ -1,6 +1,7 @@
 package org.azzasurf.model.actions;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by aaron.spiteri on 15/08/2016.
@@ -22,14 +23,14 @@ public interface Crud <T> {
      * @param params
      * @return array of matching elements
      */
-    T[] retrieve(HashMap<String, Object> params);
+    List<T> retrieve(HashMap<String, Object> params);
 
     /**
      * Retrieve all elements that have not been deleted.
      *
      * @return all elments
      */
-    T[] retrieve_all();
+    List<T> retrieve_all();
 
     /**
      * Update a specfic element, return the updated element.

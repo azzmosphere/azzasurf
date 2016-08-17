@@ -1,5 +1,4 @@
-{
-	"videos": [{
+[{
 		"vidname": "Ashley Pacey's Twin Fish Adventure",
 		"srcLocation": "https://player.vimeo.com/video/166118202"
 	}, {
@@ -29,5 +28,4 @@
 	},{
 		"vidname":"Comfortably Numb (Mick Fanning)",
 		"srcLocation" : "https://youtu.be/uxnvI47HBhg"
-	}]
-}
+}]
