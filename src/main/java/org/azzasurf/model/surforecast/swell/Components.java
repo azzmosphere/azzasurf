@@ -7,6 +7,7 @@ public class Components {
     private WaveComponent combined;
     private WaveComponent primary;
     private WaveComponent secondary;
+    private WaveComponent tertiary;
 
     public WaveComponent getCombined() {
         return combined;
@@ -30,5 +31,13 @@ public class Components {
 
     public void setSecondary(WaveComponent secondary) {
         this.secondary = secondary;
+    }
+
+    public WaveComponent getTertiary() {
+        return tertiary;
+    }
+
+    public void setTertiary(WaveComponent tertiary) {
+        this.tertiary = tertiary;
     }
 }

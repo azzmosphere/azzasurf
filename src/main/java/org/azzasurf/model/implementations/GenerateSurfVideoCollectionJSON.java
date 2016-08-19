@@ -32,6 +32,7 @@ public class GenerateSurfVideoCollectionJSON extends JSONAbstractBase<Video> imp
     private final String ROOT_NODE = "videos";
     private ResourceLoader resourceLoader;
     private ObjectMapper objectMapper = new ObjectMapper();
+    private List<Video> attributes;
 
     @Value("${json.videos}")
     private String SURF_VID_FILE;
@@ -64,5 +65,10 @@ public class GenerateSurfVideoCollectionJSON extends JSONAbstractBase<Video> imp
     @Override
     public Class getClassT() {
         return Video[].class;
+    }
+
+    @Override
+    public void setDeserialisedList(List<Video> attributes) {
+        this.attributes = attributes;
     }
 }

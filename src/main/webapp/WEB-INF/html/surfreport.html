@@ -16,5 +16,27 @@
 </head>
 <body>
     <h2>Surf Report Page</h2>
+
+    <div>
+        <table>
+            <tr>
+                <table th:each="forecast : ${forecasts}">
+                    <tr>
+                        <th>Date :</th>
+                        <td th:text="${forecast.localTimestamp}"></td>
+
+                        <th>Min Break Height :</th>
+                        <td th:text="${forecast.swell.minBreakingHeight} + ${forecast.swell.unit}"></td>
+
+
+                        <th>Max Break Height :</th>
+                        <td th:text="${forecast.swell.maxBreakingHeight} + ${forecast.swell.unit}"></td>
+                    </tr>
+                </table>
+
+            </tr>
+        </table>
+
+    </div>
 </body>
 </html>

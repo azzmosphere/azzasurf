@@ -30,7 +30,7 @@ public interface Crud <T> {
      *
      * @return all elments
      */
-    List<T> retrieve_all();
+    List<T> retrieveAll();
 
     /**
      * Update a specfic element, return the updated element.

@@ -10,6 +10,11 @@ h3{
   font-family: Impact, Charcoal, sans-serif;
 }
 
+th{
+  color: black;
+  font-family: Impact, Charcoal, sans-serif;
+}
+
 iframe {
   height: 380;
   width: 640;

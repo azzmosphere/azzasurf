@@ -5,16 +5,18 @@ import org.azzasurf.model.surforecast.Conditions;
 import org.azzasurf.model.surforecast.Swell;
 import org.azzasurf.model.surforecast.Wind;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZoneId;
 
 /**
  * Created by aaron.spiteri on 14/08/2016.
  *
  */
 public class SurfForecast {
-    private Date timestamp;       /* Time stamp */
-    private Date localTimestamp;  /* Local date time */
-    private Date issueTimestamp;  /* date request was made to MSW */
+    private LocalDate timestamp;       /* Time stamp */
+    private LocalDate localTimestamp;  /* Local date time */
+    private LocalDate issueTimestamp;  /* date request was made to MSW */
     private int fadedRating;      /* Some sort of number */
     private int solidRating;      /* Some sort of number */
     private Swell swell;
@@ -22,28 +24,32 @@ public class SurfForecast {
     private Conditions condition;
     private Charts charts;
 
-    public Date getTimestamp() {
+    private LocalDate getLocalTime(long epoch) {
+        return Instant.ofEpochSecond (epoch).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = getLocalTime(timestamp);
     }
 
-    public Date getLocalTimestamp() {
+    public LocalDate getLocalTimestamp() {
         return localTimestamp;
     }
 
-    public void setLocalTimestamp(Date localTimestamp) {
-        this.localTimestamp = localTimestamp;
+    public void setLocalTimestamp(long localTimestamp) {
+        this.localTimestamp = getLocalTime(localTimestamp);
     }
 
-    public Date getIssueTimestamp() {
+    public LocalDate getIssueTimestamp() {
         return issueTimestamp;
     }
 
-    public void setIssueTimestamp(Date issueTimestamp) {
-        this.issueTimestamp = issueTimestamp;
+    public void setIssueTimestamp(long issueTimestamp) {
+        this.issueTimestamp = getLocalTime(issueTimestamp);
     }
 
     public int getFadedRating() {

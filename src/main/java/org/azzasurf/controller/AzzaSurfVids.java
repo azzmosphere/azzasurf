@@ -29,7 +29,7 @@ public class AzzaSurfVids {
 
     @ModelAttribute(value="videos")
     private Video[] prepareData() {
-        List<Video> videos = videoCollection.retrieve_all();
+        List<Video> videos = videoCollection.retrieveAll();
         return videos.toArray(new Video[videos.size()]);
     }
 

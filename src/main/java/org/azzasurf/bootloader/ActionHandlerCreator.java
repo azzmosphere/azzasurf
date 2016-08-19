@@ -21,19 +21,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ActionHandlerCreator {
 
-    //TODO Move this to the concrete class
-    @Value("${msw.url}")
-    private String MSW_URL;
-
-    @Value("${msw.key}")
-    private String MSW_KEY;
-
-    @Value("${msw.secret}")
-    private String MSW_SECRET;
-
-    @Value("${msw.spotrequest}")
-    private String MSW_SPOTREQUEST;
-
     @Bean
     public GenerateSurfVideoCollection getSurfVideoCollection() {
         return new GenerateSurfVideoCollectionJSON();
@@ -42,11 +29,6 @@ public class ActionHandlerCreator {
     @Bean
     public GenerateSurfForecastCollection getSurfForecast() {
         GenerateSurfForecastCollectionMSW generateSurfForecastCollection = new GenerateSurfForecastCollectionMSW();
-
-        generateSurfForecastCollection.setMsw_key(MSW_KEY);
-        generateSurfForecastCollection.setMsw_secret(MSW_SECRET);
-        generateSurfForecastCollection.setMsw_spotrequest(MSW_SPOTREQUEST);
-        generateSurfForecastCollection.setMsw_url(MSW_URL);
 
         return generateSurfForecastCollection;
     }

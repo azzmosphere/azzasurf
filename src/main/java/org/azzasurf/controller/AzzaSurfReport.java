@@ -24,9 +24,9 @@ public class AzzaSurfReport {
     @Autowired
     private GenerateSurfForecastCollection generateSurfForecastCollection;
 
-    @ModelAttribute
+    @ModelAttribute(value="forecasts")
     private SurfForecast[] getSurfcast() {
-        List<SurfForecast> surfForecasts = generateSurfForecastCollection.retrieve_all();
+        List<SurfForecast> surfForecasts = generateSurfForecastCollection.retrieveAll();
         return surfForecasts.toArray(new SurfForecast[surfForecasts.size()]);
     }
 

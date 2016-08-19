@@ -26,17 +26,22 @@ public abstract class JSONAbstractBase<T> implements JSONCrud<T> {
     private ObjectMapper objectMapper =  new ObjectMapper(jsonFactory);
 
     @Override
-    public List<T> retrieve_all() {
+    public InputStream getInputStream() throws Exception {
         String url_req = getUrlRequest();
+        logger.debug("using URL " + url_req);
+        URL url = new URL(url_req);
+
+        return url.openStream();
+    }
+
+    @Override
+    public List<T> retrieveAll() {
         List<T> objList = new ArrayList<>();
 
         try {
-            logger.debug("using URL " + url_req);
-            URL url = new URL(url_req);
-
-            InputStream is = url.openStream();
-            String content = new String(IOUtils.toByteArray(is), "US-ASCII");
+            String content = new String(IOUtils.toByteArray(getInputStream()), "US-ASCII");
             objList = build(content);
+            setDeserialisedList(objList);
         }
         catch (Exception e) {
             if (logger.isDebugEnabled()) {
