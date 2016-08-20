@@ -1,6 +1,8 @@
 package org.azzasurf.controller;
 
+import org.azzasurf.mediators.out.SurfViewMediator;
 import org.azzasurf.model.SurfForecast;
+import org.azzasurf.views.SurfForecastViewMapperCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,8 @@ public class AzzaSurfReport {
     private GenerateSurfForecastCollection generateSurfForecastCollection;
 
     @ModelAttribute(value="forecasts")
-    private SurfForecast[] getSurfcast() {
-        List<SurfForecast> surfForecasts = generateSurfForecastCollection.retrieveAll();
-        return surfForecasts.toArray(new SurfForecast[surfForecasts.size()]);
+    private SurfForecastViewMapperCollection getSurfcast() {
+        return SurfViewMediator.create(generateSurfForecastCollection.retrieveAll());
     }
 
     @RequestMapping(value="/forecast",method= RequestMethod.GET)

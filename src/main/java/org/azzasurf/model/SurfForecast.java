@@ -5,18 +5,15 @@ import org.azzasurf.model.surforecast.Conditions;
 import org.azzasurf.model.surforecast.Swell;
 import org.azzasurf.model.surforecast.Wind;
 
-import java.time.LocalDate;
-import java.time.Instant;
-import java.time.ZoneId;
 
 /**
  * Created by aaron.spiteri on 14/08/2016.
  *
  */
 public class SurfForecast {
-    private LocalDate timestamp;       /* Time stamp */
-    private LocalDate localTimestamp;  /* Local date time */
-    private LocalDate issueTimestamp;  /* date request was made to MSW */
+    private long timestamp;       /* Time stamp */
+    private long localTimestamp;  /* Local date time */
+    private long issueTimestamp;  /* date request was made to MSW */
     private int fadedRating;      /* Some sort of number */
     private int solidRating;      /* Some sort of number */
     private Swell swell;
@@ -24,32 +21,29 @@ public class SurfForecast {
     private Conditions condition;
     private Charts charts;
 
-    private LocalDate getLocalTime(long epoch) {
-        return Instant.ofEpochSecond (epoch).atZone(ZoneId.systemDefault()).toLocalDate();
-    }
 
-    public LocalDate getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(long timestamp) {
-        this.timestamp = getLocalTime(timestamp);
+        this.timestamp = timestamp;
     }
 
-    public LocalDate getLocalTimestamp() {
+    public long getLocalTimestamp() {
         return localTimestamp;
     }
 
     public void setLocalTimestamp(long localTimestamp) {
-        this.localTimestamp = getLocalTime(localTimestamp);
+        this.localTimestamp = localTimestamp;
     }
 
-    public LocalDate getIssueTimestamp() {
+    public long getIssueTimestamp() {
         return issueTimestamp;
     }
 
     public void setIssueTimestamp(long issueTimestamp) {
-        this.issueTimestamp = getLocalTime(issueTimestamp);
+        this.issueTimestamp = issueTimestamp;
     }
 
     public int getFadedRating() {

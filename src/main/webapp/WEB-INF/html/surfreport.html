@@ -20,17 +20,28 @@
     <div>
         <table>
             <tr>
-                <table th:each="forecast : ${forecasts}">
+                <table th:each="group : ${forecasts.collection}">
                     <tr>
-                        <th>Date :</th>
-                        <td th:text="${forecast.localTimestamp}"></td>
+                        <td>
+                            <th>Date</th>
+                            <td th:text="${group.displayDate}"></td>
+                        </td>
 
-                        <th>Min Break Height :</th>
-                        <td th:text="${forecast.swell.minBreakingHeight} + ${forecast.swell.unit}"></td>
+                        <td>
+                            <table th:each="attribute: ${group.attributes}">
+                                <tr>
+                                    <th>Time :</th>
+                                    <td th:text="${attribute.localTimeString}"></td>
+
+                                    <th>Min Break Height :</th>
+                                    <td th:text="${attribute.forecast.swell.minBreakingHeight} + ${attribute.forecast.swell.unit}"></td>
 
 
-                        <th>Max Break Height :</th>
-                        <td th:text="${forecast.swell.maxBreakingHeight} + ${forecast.swell.unit}"></td>
+                                    <th>Max Break Height :</th>
+                                    <td th:text="${attribute.forecast.swell.maxBreakingHeight} + ${attribute.forecast.swell.unit}"></td>
+                                </tr>
+                            </table>
+                        </td>
                     </tr>
                 </table>
 
