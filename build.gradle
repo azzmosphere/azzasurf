@@ -25,6 +25,11 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
     compile 'org.thymeleaf:thymeleaf-spring3:3.0.1.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.kie.modules/org-apache-commons-lang3
+    compile group: 'org.kie.modules', name: 'org-apache-commons-lang3', version: '6.2.0.Final', ext: 'pom'
+
+
     //compile 'javax.inject:javax.inject:1'
 
     // https://mvnrepository.com/artifact/commons-io/commons-io

@@ -1,7 +1,6 @@
 package org.azzasurf.controller;
 
-import org.azzasurf.mediators.out.SurfViewMediator;
-import org.azzasurf.model.SurfForecast;
+import org.azzasurf.mediators.outbound.SurfViewMediator;
 import org.azzasurf.views.SurfForecastViewMapperCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.azzasurf.model.actions.GenerateSurfForecastCollection;
-import java.util.List;
 
 /**
  * Surf report predictions.

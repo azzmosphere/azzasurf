@@ -17,21 +17,84 @@
 <body>
     <h2>Surf Report Page</h2>
 
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="2" />
+                <th th:each="group : ${forecasts.collection}" align="center">
+                    <a th:text="${group.displayDate}" href="/forecast/" />
+                </th>
+            </tr>
+
+            <tr>
+                <td colspan="2" />
+                <th th:each="group : ${forecasts.collection}" th:text="${group.displayDayFormatted}" align="center" />
+            </tr>
+
+
+            <tdata>
+                <tr>
+                    <th colspan="2" align="right" >Best Rating</th>
+                    <tdata th:each="group : ${forecasts.collection}">
+
+                        <td align="center" valign="middle">
+                            <img th:each="soldStar : ${group.maxSolidStarRating}" src="http://cdnimages.magicseaweed.com/star_filled.png" />
+                            <img th:each="fadedStar : ${group.maxFadedStarRating}" src="http://cdnimages.magicseaweed.com/star_empty.png" />
+                        </td>
+
+                    </tdata>
+                </tr>
+            <tr>
+                <th colspan="2" align="right" >Avg Rating</th>
+
+                <tdata th:each="group : ${forecasts.collection}">
+
+                    <td align="center" valign="middle">
+                        <img th:each="soldStar : ${group.avgSolidRating}" src="http://cdnimages.magicseaweed.com/star_filled.png" />
+                        <img th:each="fadedStar : ${group.avgFadedRating}" src="http://cdnimages.magicseaweed.com/star_empty.png" />
+                    </td>
+
+                </tdata>
+            </tr>
+
+            <tr>
+                <th colspan="2" align="right">Wave Height</th>
+
+                <tdata th:each="group : ${forecasts.collection}">
+                <td th:text="${group.waveRange}" align="center" />
+                </tdata>
+            </tr>
+
+            <tr>
+                <th colspan="2" align="right" >Compass</th>
+                <td th:each="group : ${forecasts.collection}" th:text="${group.morning.compass}" align="center" />
+            </tr>
+
+            </tdata>
+
+        </table>
+    </div>
+
+
+
+
+
+
     <div>
         <table>
             <tr>
                 <table th:each="group : ${forecasts.collection}">
                     <tr>
                         <td>
-                            <th>Date</th>
-                            <td th:text="${group.displayDate}"></td>
+                            <th th:text="${group.displayDate}"></th>
                         </td>
+                        <td th:text="${group.displayDayFormatted}"></td>
 
                         <td>
                             <table th:each="attribute: ${group.attributes}">
                                 <tr>
-                                    <th>Time :</th>
-                                    <td th:text="${attribute.localTimeString}"></td>
+                                    <th th:text="${attribute.localTimeString}"></th>
 
                                     <th>Min Break Height :</th>
                                     <td th:text="${attribute.forecast.swell.minBreakingHeight} + ${attribute.forecast.swell.unit}"></td>
@@ -39,9 +102,18 @@
 
                                     <th>Max Break Height :</th>
                                     <td th:text="${attribute.forecast.swell.maxBreakingHeight} + ${attribute.forecast.swell.unit}"></td>
+
+
+                                    <th>Solid Rating</th>
+                                    <td th:text="${attribute.forecast.solidRating} " />
+
+                                    <th>Faded Rating</th>
+                                    <td th:text="${attribute.forecast.fadedRating} " />
+
                                 </tr>
                             </table>
                         </td>
+
                     </tr>
                 </table>
 

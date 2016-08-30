@@ -1,4 +1,4 @@
-package org.azzasurf.mediators.out;
+package org.azzasurf.mediators.outbound;
 
 import org.azzasurf.model.SurfForecast;
 import org.azzasurf.views.SurfForecastViewMapperCollection;
@@ -40,7 +40,8 @@ public class SurfViewMediator {
 
                     cdate = forecast.getLocalTimestampTS().format(DateTimeFormatter.ISO_DATE);
                     surfforecastGroup = new SurfforecastGroup();
-                    surfforecastGroup.setDisplayDate(forecast.getLocalTimestampTS().getDayOfMonth() + " " + forecast.getLocalTimestampTS().getMonth().name());
+                    surfforecastGroup.setDisplayDate(forecast.getLocalTimestampTS().getDayOfMonth() + " " + forecast.getLocalTimestampTS().getMonth().name().substring(0,3));
+                    surfforecastGroup.setDisplayDay(forecast.getLocalTimestampTS().getDayOfWeek().name());
                     subList = new ArrayList<>();
                     subList.add(forecast);
                 }

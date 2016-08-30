@@ -32,10 +32,13 @@ public class GenerateSurfForecastCollectionMSW extends JSONAbstractBase<SurfFore
     private List<SurfForecast> attributes;
 
     private final String JAN_JUC = "1066";
+    private final String POINT_ADDIS = "1067";
+
+    private final String SPORT_ID = JAN_JUC;
 
     @Override
     public String getUrlRequest() {
-        return msw_url + msw_key + msw_spotrequest + JAN_JUC;
+        return msw_url + msw_key + msw_spotrequest + SPORT_ID;
     }
 
     @Override
