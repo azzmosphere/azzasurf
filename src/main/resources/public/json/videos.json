@@ -27,5 +27,8 @@
 		"srcLocation": "https://www.youtube.com/embed/DUh6gLk76-8"
 	},{
 		"vidname":"Comfortably Numb (Mick Fanning)",
-		"srcLocation" : "https://youtu.be/uxnvI47HBhg"
-	}]
+		"srcLocation" : "https://www.youtube.com/embed/uxnvI47HBhg"
+	}, {
+         "vidname": "The Advanced Surfer Small Wave Surfing",
+         "srcLocation": "https://www.youtube.com/embed/ViglZbdBrp0"
+    }]
